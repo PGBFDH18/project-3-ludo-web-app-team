@@ -11,53 +11,54 @@ namespace LudoBrowser.Controllers
     public class LudoController : Controller
     {
         [Route("/ludo")]
-        public IActionResult Index()
+
+        public IActionResult Welcome()
         {
             return View();
         }
-        [HttpGet("/newgame")]
-        public string newGame()
-        {
-            var client = new RestClient("http://localhost:51489/api");
+        //[HttpGet("/newgame")]
+        //public string NewGame()
+        //{
+        //    var client = new RestClient("http://localhost:51489/api");
 
-            var getGameID = new RestRequest("/ludo", Method.POST);
+        //    var getGameID = new RestRequest("/ludo", Method.POST);
 
-            IRestResponse<int> ludoGameResponse = client.Execute<int>(getGameID, Method.POST);
-            var GameID = ludoGameResponse.Data;
+        //    IRestResponse<int> ludoGameResponse = client.Execute<int>(getGameID, Method.POST);
+        //    var GameID = ludoGameResponse.Data;
 
 
-            var request = new RestRequest("/ludo" + GameID + "/players", Method.POST);
-            LudoBrowser.Models.LudoPlayer player = new LudoBrowser.Models.LudoPlayer()
-            {
-                Color = "red",
-                Id = 1,
-                Name = "Rocky",
-            };
+        //    var request = new RestRequest("/ludo" + GameID + "/players", Method.POST);
+        //    LudoBrowser.Models.LudoPlayer player = new LudoBrowser.Models.LudoPlayer()
+        //    {
+        //        Color = "red",
+        //        Id = 1,
+        //        Name = "Rocky",
+        //    };
 
 
 
             //request.RequestFormat = DataFormat.Json;
             //request.AddBody(player);
 
-            IRestResponse addPlayer = client.Execute(request);
-            var playerCreateResponse = addPlayer.ResponseStatus;
+            //IRestResponse addPlayer = client.Execute(request);
+            //var playerCreateResponse = addPlayer.ResponseStatus;
 
 
 
-            var getGamePlayer = new RestRequest("/Ludo/" + GameID + "/players", Method.GET);
-            IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
-            var playeradd = playerResponse.Data;
-            playeradd.ToString();
-            if (playerCreateResponse == ResponseStatus.Completed)
-                return "new player is created";
-            else
-                return "Error";
+            //var getGamePlayer = new RestRequest("/Ludo/" + GameID + "/players", Method.GET);
+            //IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
+            //var playeradd = playerResponse.Data;
+            //playeradd.ToString();
+            //if (playerCreateResponse == ResponseStatus.Completed)
+            //    return "new player is created";
+            //else
+            //    return "Error";
         }
 
-        [HttpPost("/addplayer")]
-        public string addplayer()
-        {
-            return null;
-        }
-    }
+    //    [HttpPost("/addplayer")]
+    //    public string addplayer()
+    //    {
+    //        return null;
+    //    }
+    //}
 }
