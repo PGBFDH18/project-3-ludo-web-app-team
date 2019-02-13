@@ -38,7 +38,7 @@
                     Just press the button below and you will be right back!
                 </p>
 
-                <button type="button" id="button2">Continue Game!</button>
+                <button type="button" id="button2">Load game!</button>
             </div>
 
             <div class="col-sm-4">
@@ -53,7 +53,7 @@
         </div>
     </div>
 
-    <div></div> class="container">
+    <div class="container">
         <div class="row">
             <div class="col-sm-6">
                 <h3>Add your name to start the game:</h3>
@@ -61,40 +61,41 @@
 
             </div>
 
-            <div class="col-sm-2">
-                <form action="/action_page.php">
-                    name: <input type="text" name="name"><br>
-                    <input type="submit" value="Submit">
-                </form>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="nameText" class="control-label">Name</label>
+                    <div class="input-group">
+                        <input id="nameText" type="text" class="form-control">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-warning">
+                                X
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="container">
                 <div class="row">
                     <div class="col-sm-8">
                         <div class="list-group">
-                            <a href="#" class="list-group-item active">First item</a>
+                            <a href="#" class="list-group-item">First item</a>
                             <a href="#" class="list-group-item">Second item</a>
                             <a href="#" class="list-group-item">Third item</a>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </body>
 </html>
 
 @section Scripts {
-    <script>
-        $("#NewButt").click(function () {
-            $.ajax({
-                type: 'get',
-                url: '/newgame',
-                success: function (data) {
-                    alert(data);
-                },
-                timeout: 5000
-            })
-        })
-    </script>
-}
+<script>
+    document.getElementById("button1").onclick = function () {
 
+        window.location.href = "ludo/newgame";
+    }
+</script>
+}

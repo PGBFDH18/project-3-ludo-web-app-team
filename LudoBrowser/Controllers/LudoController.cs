@@ -16,6 +16,15 @@ namespace LudoBrowser.Controllers
         {
             return View();
         }
+
+        [HttpGet("/ludo/newgame")]
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+
         //[HttpGet("/newgame")]
         //public string NewGame()
         //{
@@ -37,23 +46,23 @@ namespace LudoBrowser.Controllers
 
 
 
-            //request.RequestFormat = DataFormat.Json;
-            //request.AddBody(player);
+        //request.RequestFormat = DataFormat.Json;
+        //request.AddBody(player);
 
-            //IRestResponse addPlayer = client.Execute(request);
-            //var playerCreateResponse = addPlayer.ResponseStatus;
+        //IRestResponse addPlayer = client.Execute(request);
+        //var playerCreateResponse = addPlayer.ResponseStatus;
 
 
 
-            //var getGamePlayer = new RestRequest("/Ludo/" + GameID + "/players", Method.GET);
-            //IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
-            //var playeradd = playerResponse.Data;
-            //playeradd.ToString();
-            //if (playerCreateResponse == ResponseStatus.Completed)
-            //    return "new player is created";
-            //else
-            //    return "Error";
-        }
+        //var getGamePlayer = new RestRequest("/Ludo/" + GameID + "/players", Method.GET);
+        //IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
+        //var playeradd = playerResponse.Data;
+        //playeradd.ToString();
+        //if (playerCreateResponse == ResponseStatus.Completed)
+        //    return "new player is created";
+        //else
+        //    return "Error";
+    }
 
     //    [HttpPost("/addplayer")]
     //    public string addplayer()
