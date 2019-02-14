@@ -92,10 +92,27 @@
 </html>
 
 @section Scripts {
-<script>
-    document.getElementById("button1").onclick = function () {
+    <script>
+        document.getElementById("button1").onclick = function () {
 
-        window.location.href = "ludo/newgame";
-    }
-</script>
+            window.location.href = "ludo/board";
+            window.alert("New Game started press here to leave this page!");
+
+        }
+    </script>
 }
+
+@*@section Scripts {
+    <script>
+        $("#button1").click(function () {
+            $.ajax({
+                type: 'get',
+                url: '/newgame',
+                success: function (data) {
+                    alert("This worked!");
+                },
+                timeout: 5000
+            })
+        })
+    </script>
+}*@
