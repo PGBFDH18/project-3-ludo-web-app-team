@@ -1,5 +1,5 @@
 html{
-    background-color: lightgray;
+    background-color: lightgreen;
 }
 
 .currentPlayer{
@@ -10,6 +10,58 @@ html{
  color:green;
  position: absolute;
  top: 250px;
+}
+
+#Red {
+    position: absolute;
+    top: 250px;
+    left: 300px;
+}
+
+#Blue {
+    position: absolute;
+    top: 250px;
+    left: 350px;
+}
+
+#Green {
+    position: absolute;
+    top: 250px;
+    left: 400px;
+}
+
+#Orange {
+    position: absolute;
+    top: 250px;
+    left: 450px;
+}
+
+#RedLabel {
+    position: absolute;
+    font-size: 70%;
+    top: 200px;
+    left: 300px;
+}
+
+#BlueLabel {
+    position: absolute;
+    font-size: 70%;
+    top: 200px;
+    left: 350px;
+}
+
+#GreenLabel {
+    position: absolute;
+    font-size: 70%;
+    top: 200px;
+    left: 400px;
+}
+
+#OrangeLabel {
+    position: absolute;
+    font-size: 70%;
+    top: 200px;
+    left: 450px;
 }
 
 #button2{

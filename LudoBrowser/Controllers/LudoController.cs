@@ -23,15 +23,15 @@ namespace LudoBrowser.Controllers
         {
             return View();
         }
-
-
+                                        
+                                        
         [HttpGet("/newgame")]
         public string NewGame()
         {
             var client = new RestClient("http://localhost:51489/api");
 
             var getGameID = new RestRequest("/ludo", Method.POST);
-
+            
             IRestResponse<int> ludoGameResponse = client.Execute<int>(getGameID, Method.POST);
             var GameID = ludoGameResponse.Data;
 
