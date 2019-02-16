@@ -6,6 +6,7 @@ using LudoBrowser.Models;
 using Microsoft.AspNetCore.Mvc;
 using RestSharp;
 
+
 namespace LudoBrowser.Controllers
 {
     public class LudoController : Controller
@@ -38,11 +39,10 @@ namespace LudoBrowser.Controllers
             var request = new RestRequest("/ludo" + GameID + "/players", Method.POST);
 
 
+
             LudoBrowser.Models.LudoPlayer player = new LudoBrowser.Models.LudoPlayer()
             {
-                Color = "red",
-                Id = 1,
-                Name = "Rocky",
+                  
             };
 
 
@@ -56,16 +56,20 @@ namespace LudoBrowser.Controllers
 
             IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
 
+
             var playeradd = playerResponse.Data;
             playeradd.ToString();
             if (playerCreateResponse == ResponseStatus.Completed)
 
                 return "New player has been added and game started!";
             else
-                return "Error";
+                return "Write your Name and choose your Color!";
+           
+
+
         }
 
-         [HttpPost("/addplayer")]
+        [HttpPost("/addplayer")]
             public string addplayer()
             {
             return null;

@@ -1,4 +1,4 @@
-﻿
+﻿@model LudoBrowser.Models.LudoPlayer
 @{
     ViewData["Title"] = "Welcome";
 }
@@ -28,7 +28,29 @@
                     Press below to start a new game with a minimum of 2
                     and a maximum of 4 players!
                 </p>
-                <button type="button" id="button1">JOIN LOBBY!</button>
+                @*<button type="button" id="button1">JOIN LOBBY!</button>*@
+                <form asp-action="board" asp-controller="Ludo">
+                    <div>
+                        <input asp-for="Name" type="text" placeholder="Your name here" />
+                    </div>
+                    <div>
+                        <label asp-for="Color"></label>
+                        <select asp-for="Color">
+                            <option value="0">Red</option>
+                            <option value="1">Blue</option>
+                            <option value="2">Green</option>
+                            <option value="3">Orange</option>
+                        </select>
+                        <select asp-for="Id">
+                            <option value="0">ID 1</option>
+                            <option value="1">ID 2</option>
+                            <option value="2">ID 3</option>
+                            <option value="3">ID 4</option>
+
+                        </select>
+                    </div>
+                    <input id="PlayerButton" type="submit" class="button" value="New Game" />
+                </form>
             </div>
 
             <div class="col-sm-4">
@@ -49,70 +71,37 @@
                 </p>
 
                 <button type="button" id="button3">Delete Game!</button>
+
             </div>
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>Add your name to start the game:</h3>
-                <p>Start a new game or choose an existing one! </p>
 
-            </div>
-
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label for="nameText" class="control-label">Name</label>
-                    <div class="input-group">
-                        <input id="nameText" type="text" class="form-control">
-                        <div class="input-group-btn">
-                            <button type="button" class="btn btn-warning">
-                                X
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-8">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item">First item</a>
-                            <a href="#" class="list-group-item">Second item</a>
-                            <a href="#" class="list-group-item">Third item</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
 
-@section Scripts {
+@*@section Scripts {
     <script>
         document.getElementById("button1").onclick = function () {
 
             window.location.href = "ludo/board";
-            window.alert("New Game started press here to leave this page!");
+            window.alert("Redirecting to game lobby!");
 
         }
     </script>
-}
+}*@
 
 @*@section Scripts {
-    <script>
-        $("#button1").click(function () {
-            $.ajax({
-                type: 'get',
-                url: '/newgame',
-                success: function (data) {
-                    alert("This worked!");
-                },
-                timeout: 5000
+        <script>
+            $("#button1").click(function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/newgame',
+                    success: function (data) {
+                        alert("This worked!");
+                    },
+                    timeout: 5000
+                })
             })
-        })
-    </script>
-}*@
+        </script>
+    }*@
