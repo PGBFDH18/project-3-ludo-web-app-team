@@ -9,65 +9,35 @@ using RestSharp;
 
 namespace LudoBrowser.Controllers
 {
+     [Route("api/ludo")]
     public class LudoController : Controller
     {
-        [Route("/ludo")]
+        private RestClient Client = new RestClient("http://localhost:51489/api");
 
+        [Route("/ludo")]
         public IActionResult Welcome()
         {
             return View();
         }
 
-
-        [HttpGet("/ludo/board")] 
-
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
-                                        
-                                        
-        [HttpGet("/newgame")]
-        public string NewGame()
+
+
+        [HttpGet("/newgame")]   
+        public string Newgame()
         {
-            var client = new RestClient("http://localhost:51489/api");
+            var getGameID = new RestRequest("/Ludo", Method.POST);
 
-            var getGameID = new RestRequest("/ludo", Method.POST);
-            
-            IRestResponse<int> ludoGameResponse = client.Execute<int>(getGameID, Method.POST);
+            IRestResponse<int> ludoGameResponse = Client.Execute<int>(getGameID, Method.POST);
             var GameID = ludoGameResponse.Data;
-
-            var request = new RestRequest("/ludo" + GameID + "/players", Method.POST);
-
-
-
-            IRestResponse addPlayer = client.Execute(request);
-            var playerCreateResponse = addPlayer.ResponseStatus;
-
-            var getGamePlayer = new RestRequest("/Ludo/" + GameID + "/players", Method.GET);
-
-            IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
-
-         
-
-            var playeradd = playerResponse.Data;
-            playeradd.ToString();
-
-            if (playerCreateResponse == ResponseStatus.Completed)
-
-                return "New player has been added and game started!";
-            else
-                return "Write your Name and choose your Color!";
-           
-                
-
+            return GameID.ToString();
         }
 
-        [HttpPost("/addplayer")]
-            public string addplayer()
-            {
-            return null;
-            }
+
     }
 
 }
