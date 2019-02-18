@@ -2,7 +2,30 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<ul class="list-group">
+
+    <div class="jumbotron text-center">
+        <h1>Ultimate Ludo Game!</h1>
+        <p>Looking for a game of ludo? You came to the right spot!</p>
+    </div>
+    <button type="button" id="PlayerButton" class="btn btn-light">Create New Game</button>
+    @foreach (var gameid in ViewBag.GameIDs)
+    {
+        <a href="/game/@gameid" class="list-group-item">@gameid</a>
+    }
+</ul>
+
+@section Scripts {
+    <script>
+$("#PlayerButton").click(function () {
+                $.ajax({
+                    type: 'get',
+                    url: '/newgame',
+                    success: function (data) {
+                        console.log("Created the new Game");
+                        window.location.href = "/";
+                    },
+                    timeout: 5000
+                })
+            })</script>
+}

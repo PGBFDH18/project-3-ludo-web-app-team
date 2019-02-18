@@ -28,8 +28,8 @@
                     Press below to start a new game with a minimum of 2
                     and a maximum of 4 players!
                 </p>
-                @*<button type="button" id="button1">JOIN LOBBY!</button>*@
-                <form asp-action="board" asp-controller="Ludo">
+                @*<button type="button" id="button1">JOIN LOBBY!</button>*@ 
+                <form asp-action="Index" asp-controller="Ludo">
                     <div>
                         <input asp-for="Name" type="text" placeholder="Your name here" />
                     </div>
@@ -80,16 +80,16 @@
 </body>
 </html>
 
-@*@section Scripts {
+@section Scripts {
     <script>
-        document.getElementById("button1").onclick = function () {
+        document.getElementById("PlayerButton").onclick = function () {
 
-            window.location.href = "ludo/board";
+            window.location.href = "/ludo/board";
             window.alert("Redirecting to game lobby!");
 
         }
     </script>
-}*@
+}
 
 @*@section Scripts {
         <script>

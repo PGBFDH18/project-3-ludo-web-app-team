@@ -18,6 +18,7 @@ namespace LudoBrowser.Controllers
             return View();
         }
 
+
         [HttpGet("/ludo/board")] 
 
         public IActionResult Index()
@@ -40,15 +41,6 @@ namespace LudoBrowser.Controllers
 
 
 
-            LudoBrowser.Models.LudoPlayer player = new LudoBrowser.Models.LudoPlayer()
-            {
-                  
-            };
-
-
-            request.RequestFormat = DataFormat.Json;
-            request.AddBody(player);
-
             IRestResponse addPlayer = client.Execute(request);
             var playerCreateResponse = addPlayer.ResponseStatus;
 
@@ -56,16 +48,18 @@ namespace LudoBrowser.Controllers
 
             IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
 
+         
 
             var playeradd = playerResponse.Data;
             playeradd.ToString();
+
             if (playerCreateResponse == ResponseStatus.Completed)
 
                 return "New player has been added and game started!";
             else
                 return "Write your Name and choose your Color!";
            
-
+                
 
         }
 
