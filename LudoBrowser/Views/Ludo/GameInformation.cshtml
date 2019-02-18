@@ -1,0 +1,32 @@
+﻿@model LudoBrowser.Models.GameModel 
+@{
+    ViewData["Title"] = "GameInformation";
+}
+
+<h1>GameInformation</h1>
+
+<div>
+    <h4>GameModel</h4>
+    <hr />
+    <table cellspacing="0" style="border-collapse:collapse;">
+        <tbody>
+            <tr>
+                <td>
+                    <strong>  @Html.DisplayNameFor(model => model.GameId) : </strong>
+                    <span>@Html.DisplayFor(model => model.GameId)</span>
+                    <br />
+                    <strong>  @Html.DisplayNameFor(model => model.NumberOfPlayers) : </strong>
+                    <span> @Html.DisplayFor(model => model.NumberOfPlayers)</span>
+                    <br />
+                    <strong>  @Html.DisplayNameFor(model => model.CurrentPlayerId) : </strong>
+                    <span> @Html.DisplayFor(model => model.CurrentPlayerId)</span>
+                    <br />
+                    <strong> @Html.DisplayNameFor(model => model.State) : </strong>
+                    <span>@Html.DisplayFor(model => model.State)</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <div id="Input">
+
