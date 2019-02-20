@@ -1,4 +1,4 @@
-﻿@model LudoBrowser.Models.GameModel 
+﻿@model LudoBrowser.Models.GameModel
 @{
     ViewData["Title"] = "GameInformation";
 }
@@ -29,4 +29,52 @@
     </table>
     <hr />
     <div id="Input">
+        <form action="/startgame/@Html.DisplayFor(model => model.GameId)" method="get">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Player 1 Name</label>
+                <input type="text" class="form-control name" name="name1" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Player 2 Name</label>
+                <input type="text" class="form-control name" name="name2" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Player 3 Name</label>
+                <input type="text" class="form-control name" name="name3" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Player 4 Name</label>
+                <input type="text" class="form-control name" name="name4" placeholder="Enter Name">
+            </div>
+            <button type="submit" id="newgame" class="btn btn-success">Enter into the Game</button>
+        </form>
+        <br />
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <a href="/delete/@Html.DisplayFor(model => model.GameId)" type="button" class="btn btn-warning">Delete Game</a>
+        </div>
+    </div>
 
+</div>
+@section Scripts {
+    <script>
+
+    if (@Html.DisplayFor(model => model.NumberOfPlayers) > 1) {
+        $("#Input").show();
+    }
+    else { $("#Input").show();}
+    $("#newgame").click((e) => {
+        e.preventDefault();
+        let playerList = [];
+        var values = $("input[type='text']")
+            .map(function () {
+                if ($(this).val() != "")
+                    playerList.push($(this).val());
+            }).get();
+        console.log(playerList);
+        if (playerList.length > 1)
+            $('form').submit();
+        else
+            alert("Atleast 2 player is needed to start the game");
+    })
+    </script>
+}

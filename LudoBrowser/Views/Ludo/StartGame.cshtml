@@ -1,0 +1,120 @@
+﻿@model List<LudoBrowser.Models.LudoPlayer>
+@{
+    ViewData["Title"] = "startgame";
+    Layout = "_LudoLayout";
+}
+@ViewBag.gameID
+<p>Player Turn : </p>
+<strong id="playerturnSpan"></strong>
+<br />
+<hr />
+@foreach (var player in Model)
+{
+    <table cellspacing="0" style="border-collapse:collapse;">
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Player Name : </strong>
+                    <span>@player.Name</span>
+                    <br />
+                    <strong>Player color : </strong>
+                    <span>@player.Color</span>
+                    <br />
+                    <button class="button" id="btn-p0-@player.Id" data-playerid="@player.Id" data-pieceid="0">Piece1</button>
+                    <span id="p0-@player.Id">Home</span>
+                    <button class="button" id="btn-p1-@player.Id" data-playerid="@player.Id" data-pieceid="1">Piece2</button>
+                    <span id="p1-@player.Id">Home</span>
+                    <button class="button" id="btn-p2-@player.Id" data-playerid="@player.Id" data-pieceid="2">Piece3</button>
+                    <span id="p2-@player.Id">Home</span>
+                    <button class="button" id="btn-p3-@player.Id" data-playerid="@player.Id" data-pieceid="3">Piece4</button>
+                    <span id="p3-@player.Id">Home</span>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br />
+    <hr />
+
+}
+<button type="button" id="roll">ROLL DIECE</button>
+<small class="badge badge-secondary" id="diceValue"></small>
+
+@section Scripts {
+    <script>
+        const totalPlayer = @Model.Count;
+        var playerInfoList = [];
+        @foreach (var player in Model)
+            {
+                @:playerInfoList.push(["@player.Name", "@player.Color"]);
+        }
+            var playerList = [];
+            for (let i = 0; i < totalPlayer; i++) {
+                playerList[i] = new player();
+                playerList[i].updateid(i);
+            }
+
+            for (let i = 0; i < totalPlayer -1; i++) {
+
+                playerList[i].updateNext(playerList[i+1]);
+            }
+            playerList[totalPlayer - 1].updateNext(playerList[0]);
+            let currentPlayer = playerList[0];
+    $("#playerturnSpan").text("Current Player : " +playerInfoList[currentPlayer.id][0]);
+        $(".button").prop("disabled", true);
+
+
+        $("#btn-p0-0").prop("disabled", false);
+        $("#btn-p1-0").prop("disabled", false);
+        $("#btn-p2-0").prop("disabled", false);
+        $("#btn-p3-0").prop("disabled", false);
+
+
+        $(".button").click(function () {
+                if ($("#diceValue").text() == "") {
+                    alert("Roll the dice!");
+                }
+            else {
+
+                    const playerid = $(this).data("playerid");
+                    const pieceid = $(this).data("pieceid");
+                    const str = "#p" + pieceid + "-" + playerid;
+                    if ($(str).text() == "Home") {
+                    $(str).text(0 + parseInt($("#diceValue").text()));
+                    }
+                else {
+                    $(str).text(parseInt($(str).text()) + parseInt($("#diceValue").text()));
+                    }
+                $("#diceValue").text("")
+                currentPlayer = currentPlayer.nextplayer();
+                $(".button").prop("disabled", true);
+                    var btnstr = "#btn-p0-" + currentPlayer.id;
+                    var btnstr1 = "#btn-p1-" + currentPlayer.id;
+                    var btnstr2 = "#btn-p2-" + currentPlayer.id;
+                    var btnstr3 = "#btn-p3-" + currentPlayer.id;
+                $(btnstr).prop("disabled", false);
+                $(btnstr1).prop("disabled", false);
+                $(btnstr2).prop("disabled", false);
+                $(btnstr3).prop("disabled", false);
+                    $("#playerturnSpan").text("Current Player : " + playerInfoList[currentPlayer.id][0]);
+                }
+            });
+        $("#roll").click(function () {
+            $("#diceValue").text(Math.floor(Math.random() * 6) + 1);
+            })
+
+        function player() {
+                this.next = null;
+                this.id = 0;
+                this.updateid = function (id) {
+                    this.id = id;
+                }
+                this.updateNext = function (next) {
+                    this.next = next;
+                }
+                this.nextplayer = function () {
+                    return this.next;
+                }
+            }
+    </script>
+}
