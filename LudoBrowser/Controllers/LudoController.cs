@@ -20,12 +20,6 @@ namespace LudoBrowser.Controllers
             return View();
         }
 
-        [HttpGet]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
 
         [HttpGet("/newgame")]   
         public string Newgame()
@@ -36,38 +30,6 @@ namespace LudoBrowser.Controllers
             var GameID = ludoGameResponse.Data;
             return GameID.ToString();
         }
-
-
-        /*
-           var request = new RestRequest("/ludo" + GameID + "/players", Method.POST);
-
-
-
-           LudoBrowser.Models.LudoPlayer player = new LudoBrowser.Models.LudoPlayer()
-           {
-
-           };
-
-
-           request.RequestFormat = DataFormat.Json;
-           request.AddBody(player);
-
-           IRestResponse addPlayer = client.Execute(request);
-           var playerCreateResponse = addPlayer.ResponseStatus;
-
-           var getGamePlayer = new RestRequest("/Ludo/" + GameID + "/players", Method.GET);
-
-           IRestResponse<List<LudoPlayer>> playerResponse = client.Execute<List<LudoPlayer>>(getGamePlayer);
-
-
-           var playeradd = playerResponse.Data;
-           playeradd.ToString();
-           if (playerCreateResponse == ResponseStatus.Completed)
-
-               return "New player has been added and game started!";
-           else
-               return "Write your Name and choose your Color!";*/
-
 
 
 
@@ -81,12 +43,8 @@ namespace LudoBrowser.Controllers
             return View();
         }
 
-        [HttpGet("{gameId}")]
-        public string addplayer()
-        {
 
-            return null;
-        }
+
         [Route("/delete/{gameID}")]
         public IActionResult delete(int gameID)
         {
@@ -101,7 +59,6 @@ namespace LudoBrowser.Controllers
         {
 
 
-            //List<string> PlayerNames = new List<string>() { name1, name2, name3, name4 };   
             if (name1 != null)
             {
 
@@ -123,6 +80,7 @@ namespace LudoBrowser.Controllers
                     Name = name2
                 };
                 addUser(gameID, player);
+
             }
             if (name3 != null)
             {
@@ -145,6 +103,7 @@ namespace LudoBrowser.Controllers
                 };
                 addUser(gameID, player);
             }
+
             var request = new RestRequest("/ludo/" + gameID + "/players", Method.GET);
 
             IRestResponse<List<LudoPlayer>> PlayersListResponse = Client.Execute<List<LudoPlayer>>(request);

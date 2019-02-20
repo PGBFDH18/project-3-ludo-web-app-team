@@ -8,12 +8,11 @@ namespace LudoBrowser.Models
 {
     public class LudoPlayer
     {
-        [Required]
         public string Color { get; set; }
 
-        [Required]
         public int Id { get; set; }
 
+        [StringLength(25, MinimumLength = 1)]
         [Required]
         public string Name { get; set; }
     }
