@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LudoBrowser.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using RestSharp;
 
 
@@ -12,22 +13,30 @@ namespace LudoBrowser.Controllers
      [Route("api/ludo")]
     public class LudoController : Controller
     {
-        private RestClient Client = new RestClient("http://localhost:51489/api");
+        private RestClient Client = new RestClient("https://ludowebapirocky.azurewebsites.net");
+        private readonly ILogger _logger;
+
+        public LudoController(ILogger<LudoController> logger)
+        {
+            _logger = logger;
+        }
 
         [Route("/ludo")]
         public IActionResult Welcome()
         {
+            _logger.LogInformation("User navigated to Welcome page.");
             return View();
         }
-
 
         [HttpGet("/newgame")]   
         public string Newgame()
         {
+            
             var getGameID = new RestRequest("/Ludo", Method.POST);
 
             IRestResponse<int> ludoGameResponse = Client.Execute<int>(getGameID, Method.POST);
             var GameID = ludoGameResponse.Data;
+            _logger.LogInformation("User navigated to NewGame page.");
             return GameID.ToString();
         }
 
@@ -51,7 +60,7 @@ namespace LudoBrowser.Controllers
             var getGameInformation = new RestRequest("/Ludo/" + gameID, Method.DELETE);
 
             IRestResponse<GameModel> ludoGameResponse = Client.Execute<GameModel>(getGameInformation);
-
+            _logger.LogInformation("User deleted game");
             return Redirect("/");
         }
         [HttpGet("/startgame/{gameID}")]

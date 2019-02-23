@@ -9,10 +9,19 @@
         <p>Looking for a game of ludo? You came to the right spot!</p>
     </div>
     <button type="button" id="PlayerButton" class="btn btn-light">Create New Game</button>
-    @foreach (var gameid in ViewBag.GameIDs)
-    {
-        <a href="/game/@gameid" class="list-group-item">@gameid</a>
-    }
+    @{
+		if(ViewBag.GameIDs == null)
+		{
+			
+		}
+		else
+		{
+			@foreach (var gameid in ViewBag.GameIDs)
+    		{
+        		<a href="/game/@gameid" class="list-group-item">@gameid</a>
+    		}
+		}
+	}
 </ul>
 
 @section Scripts {
@@ -20,7 +29,7 @@
 $("#PlayerButton").click(function () {
                 $.ajax({
                     type: 'get',
-                    url: '/newgame',
+                    url: 'https://ludowebapirocky.azurewebsites.net/api/ludo',
                     success: function (data) {
                         console.log("Created the new Game");
                         window.location.href = "/";

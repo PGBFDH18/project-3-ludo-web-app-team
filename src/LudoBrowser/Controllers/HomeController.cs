@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LudoBrowser.Models;
 using RestSharp;
+using Microsoft.Extensions.Logging;
 
 namespace LudoBrowser.Controllers
 {
     public class HomeController : Controller
-    {
-        private RestClient client = new RestClient(" http://localhost:51489/api");
 
+    {
+        private RestClient client = new RestClient("https://ludowebapirocky.azurewebsites.net");
+        
         public IActionResult Index()
         {
             var getAllGamesList = new RestRequest("/ludo", Method.GET);
-
 
             IRestResponse<List<int>> ludoGameResponse = client.Execute<List<int>>(getAllGamesList);
             ViewBag.GameIDs = ludoGameResponse.Data;
