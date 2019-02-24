@@ -13,7 +13,7 @@ namespace LudoBrowser.Controllers
     public class HomeController : Controller
 
     {
-        private RestClient client = new RestClient("https://ludowebapirocky.azurewebsites.net");
+        private RestClient client = new RestClient("https://ludowebapirocky.azurewebsites.net/api");
         
         public IActionResult Index()
         {

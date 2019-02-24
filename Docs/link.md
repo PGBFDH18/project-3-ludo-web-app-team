@@ -1,3 +1,1 @@
-WEB API LINK:
-
-https://ludowebapirocky.azurewebsites.net/
+https://ludobrowserapp.azurewebsites.net/

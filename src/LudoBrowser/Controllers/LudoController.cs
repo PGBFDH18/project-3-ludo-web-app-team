@@ -13,7 +13,7 @@ namespace LudoBrowser.Controllers
      [Route("api/ludo")]
     public class LudoController : Controller
     {
-        private RestClient Client = new RestClient("https://ludowebapirocky.azurewebsites.net");
+        private RestClient Client = new RestClient("https://ludowebapirocky.azurewebsites.net/api");
         private readonly ILogger _logger;
 
         public LudoController(ILogger<LudoController> logger)

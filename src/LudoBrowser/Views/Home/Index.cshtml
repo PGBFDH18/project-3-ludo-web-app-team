@@ -29,7 +29,7 @@
 $("#PlayerButton").click(function () {
                 $.ajax({
                     type: 'get',
-                    url: 'https://ludowebapirocky.azurewebsites.net/api/ludo',
+                    url: '/newgame',
                     success: function (data) {
                         console.log("Created the new Game");
                         window.location.href = "/";
